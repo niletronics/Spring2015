@@ -10,7 +10,7 @@ adderchecker #(.width(width)) a1(.A(A),.B(B),.Cin(Cin),.S(CS),.Cout(CCout));
 
 initial begin
 $display ("A \t B \t Cin \t\t DesignS \t DesignCout \t CheckerS \t CheckerCout");
-repeat(1000) begin
+repeat(10) begin
 	A = $random;
 	B = $random;
 	Cin = 1'b0;
