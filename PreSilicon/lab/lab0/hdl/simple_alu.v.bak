@@ -36,11 +36,11 @@ parameter TRUE = 1'b1,
 
 
 
-/*NbitFullAdder		#(.width(ALU_SIZE))	add_i1(.a(data_A),.b(data_B),.cin(1'b0),.sum(result_add),.cout(add_overflow));
+NbitFullAdder		#(.width(ALU_SIZE))	add_i1(.a(data_A),.b(data_B),.cin(1'b0),.sum(result_add),.cout(add_overflow));
 Nbitcomparator 		#(.width(ALU_SIZE))	comp_i1(.a(data_A),.b(data_B),.comp(result_comp));
 Nbitparity 			#(.width(ALU_SIZE))	parity_i1(.a(data_A),.b(data_B),.parity(result_parity));
 NbitFullSubtractor	#(.width(ALU_SIZE))	sub_i1(.a(data_A),.b(data_B),.bin(1'b0),.diff(result_sub),.bout(sub_overflow));
-*/
+
 // Next State Assignment 
 always@(posedge clk)  begin
 	if (reset_n == 1'b0) begin

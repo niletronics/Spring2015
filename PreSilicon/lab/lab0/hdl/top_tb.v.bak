@@ -1,0 +1,28 @@
+`define WIDTH 8
+
+`timescale 1ns/1ps
+
+module top;
+
+reg clk;
+wire reset_n,opcode_valid,opcode,done,overflow;
+wire [`WIDTH-1:0] result,data;
+
+parameter TRUE=1'b1;
+parameter FALSE = 1'b0;
+parameter CLOCK_WIDTH=10;
+
+alu_test   i1(clk,reset_n,opcode_valid,opcode,data,done,overflow,result);
+simple_alu i2(clk,reset_n,opcode_valid,opcode,data,done,result,overflow);
+
+initial
+begin
+
+clk=FALSE;
+
+forever #CLOCK_WIDTH clk=~clk;
+
+
+end
+
+endmodule

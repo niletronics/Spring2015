@@ -2,307 +2,323 @@ m255
 K4
 z2
 13
-cModel Technology
-Z0 d/u/dattani/Documents/Spring2015/PreSilicon/lab/lab0
+!s112 1.1
 !i10d 8192
 !i10e 25
 !i10f 100
+cModel Technology
+Z0 dU:/dattani/Documents/Spring2015/PreSilicon/lab/lab0
 T_opt
-!s110 1428296754
-VGd^1P;=YVdJ6a5aS<iM=`2
+!s110 1428302563
+V5nCaK67JBJi[zX5jcJ^AI3
 04 3 4 work top fast 0
-=1-90b11c4fce77-55221432-59978-53c3
+=1-0026b9fc33ce-55222ae2-4b-3b80
 o-quiet -auto_acc_if_foreign -work work
 n@_opt
-OE;O;10.2a;57
+OL;O;10.3b;59
 vadderchecker
-Z1 !s110 1428296753
-IY;6cV1<keVgE;JUoc2:dK3
+Z1 !s110 1428302544
+!i10b 1
+!s100 RO[9hFC]EaK4NnAOmJ:QB1
+I`J_X8X4f;?09[<lLDcH=A2
 Z2 V`JN@9S9cnhjKRR_L]QIcM3
-Z3 d/u/dattani/Documents/Spring2015/PreSilicon/lab/lab0
+R0
 w1428261540
 8./hdl/adderchecker.v
 F./hdl/adderchecker.v
 L0 1
-Z4 OE;L;10.2a;57
+Z3 OL;L;10.3b;59
 r1
-31
-Z5 !s108 1428296753.538516
-Z6 !s107 ./hdl/top_tb.v|./hdl/subchecker.v|./hdl/simple_alu.v|./hdl/onebitparity.v|./hdl/onebitfullsubtractor.v|./hdl/onebitfulladder.v|./hdl/onebitcomparator.v|./hdl/alu_test.v|./hdl/adderchecker.v|./hdl/Nbitparity.v|./hdl/Nbitcomparator.v|./hdl/NbitFullSubtractor_tb.v|./hdl/NbitFullSubtractor.v|./hdl/NbitFullAdder_tb.v|./hdl/NbitFullAdder.v|
-Z7 !s90 ./hdl/NbitFullAdder.v|./hdl/NbitFullAdder_tb.v|./hdl/NbitFullSubtractor.v|./hdl/NbitFullSubtractor_tb.v|./hdl/Nbitcomparator.v|./hdl/Nbitparity.v|./hdl/adderchecker.v|./hdl/alu_test.v|./hdl/onebitcomparator.v|./hdl/onebitfulladder.v|./hdl/onebitfullsubtractor.v|./hdl/onebitparity.v|./hdl/simple_alu.v|./hdl/subchecker.v|./hdl/top_tb.v|
-Z8 o-L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-!i10b 1
-!s100 c20QBPP9oQYihfgVFAV<@0
 !s85 0
+31
+Z4 !s108 1428302544.135000
+Z5 !s107 ./hdl/top_tb.v|./hdl/subchecker.v|./hdl/simple_alu.v|./hdl/onebitparity.v|./hdl/onebitfullsubtractor.v|./hdl/onebitfulladder.v|./hdl/onebitcomparator.v|./hdl/alu_test.v|./hdl/adderchecker.v|./hdl/Nbitparity.v|./hdl/Nbitcomparator.v|./hdl/NbitFullSubtractor_tb.v|./hdl/NbitFullSubtractor.v|./hdl/NbitFullAdder_tb.v|./hdl/NbitFullAdder.v|
+Z6 !s90 -reportprogress|300|./hdl/NbitFullAdder.v|./hdl/NbitFullAdder_tb.v|./hdl/NbitFullSubtractor.v|./hdl/NbitFullSubtractor_tb.v|./hdl/Nbitcomparator.v|./hdl/Nbitparity.v|./hdl/adderchecker.v|./hdl/alu_test.v|./hdl/onebitcomparator.v|./hdl/onebitfulladder.v|./hdl/onebitfullsubtractor.v|./hdl/onebitparity.v|./hdl/simple_alu.v|./hdl/subchecker.v|./hdl/top_tb.v|
+!i113 0
+Z7 o-L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 valu_test
 R1
-ISX2Q8NJ:KDJeN>mPI^2?70
+!i10b 1
+!s100 fSDdh]fD2FT]JYENQT@642
+ICXZj>VV[PASj8bE80g`SU2
 R2
-R3
-w1428294794
+R0
+w1428300623
 8./hdl/alu_test.v
 F./hdl/alu_test.v
 L0 13
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 :94]i>G9Z?T1oR68U?Pb61
-!s85 0
 vNbitcomparator
 R1
-IAMCob;L3]BlnzLzT4^N7:3
+!i10b 1
+!s100 m@?n>?l9k0BKRLN1E8hnb0
+I:LR?K6jKUh?^bIM7gbkm>1
 R2
-R3
+R0
 w1428293255
 8./hdl/Nbitcomparator.v
 F./hdl/Nbitcomparator.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
 n@nbitcomparator
-!i10b 1
-!s100 _KVVigQmV^XBf_PIWgbaf1
-!s85 0
 vNbitFullAdder
 R1
-I6X;2e2BJY:`cmH?0<Of9A1
+!i10b 1
+!s100 lJbUo>?a?jI=QU>h;La>Y1
+ICkbldM`IW:<T<_iOW?@X63
 R2
-R3
+R0
 w1428262164
 8./hdl/NbitFullAdder.v
 F./hdl/NbitFullAdder.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
 n@nbit@full@adder
-!i10b 1
-!s100 QPg:YBT>MH=d1Q@:[oh`V1
-!s85 0
 vNbitFulladder_tb
 R1
-IGzX9jZB6QOALA;JS=cMS>1
+!i10b 1
+!s100 K=I@RNoJ@g_TCk15P7]z=3
+Ig9IXWWf?>JZ_TDgGeO2QN3
 R2
-R3
+R0
 w1428262600
 8./hdl/NbitFullAdder_tb.v
 F./hdl/NbitFullAdder_tb.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
 n@nbit@fulladder_tb
-!i10b 1
-!s100 8XP@o8[z9Cdk[oaBDndhB2
-!s85 0
 vNbitFullSubtractor
 R1
-I3Tg@?KKI<j^n?omX022b92
+!i10b 1
+!s100 Q^9`Ol;F<YNCBoWgm:R3g2
+IeKRke1jl@^lEWlNS<zJ;Z0
 R2
-R3
+R0
 w1428281778
 8./hdl/NbitFullSubtractor.v
 F./hdl/NbitFullSubtractor.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
 n@nbit@full@subtractor
-!i10b 1
-!s100 F9K>@Glg?ZnbA^RA]4zc<3
-!s85 0
 vNbitFullSubtractor_tb
 R1
-I:gVf_XR@LS]MRR3L_;6i72
+!i10b 1
+!s100 HT>GF`=iGPz33QUfnSoU40
+IJGIKBV8NIm^m=^0A:^A;00
 R2
-R3
+R0
 w1428281350
 8./hdl/NbitFullSubtractor_tb.v
 F./hdl/NbitFullSubtractor_tb.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
 n@nbit@full@subtractor_tb
-!i10b 1
-!s100 :1Eln=^MhATdaIH<<[1IH3
-!s85 0
 vNbitparity
 R1
-I9IV@fX=Uj9zO;D8AW]C:U2
+!i10b 1
+!s100 Z3E@1UN0z]^jEcHEV2K2X0
+I7iIG@eCIGH[CHm;P]dPAU1
 R2
-R3
+R0
 w1428293271
 8./hdl/Nbitparity.v
 F./hdl/Nbitparity.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
 n@nbitparity
-!i10b 1
-!s100 giSR:MT4a]l1hRUJ=fn<W0
-!s85 0
 vonebitcomparator
 R1
-I;AMl4e6Q^_jUSM>j89g4g1
+!i10b 1
+!s100 j18nnzVUL_j]QP`O2a<]H2
+IY?20U5aaJ<NcHENP8LAco1
 R2
-R3
+R0
 w1428282852
 8./hdl/onebitcomparator.v
 F./hdl/onebitcomparator.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 KLJ5cS<ah4c<gAgh9M<BW3
-!s85 0
 vonebitfulladder
 R1
-IClDJVA3UWC=L4nj3eiU6L3
+!i10b 1
+!s100 Xn^ZcSOlOnNjo[FHDH=nz0
+IePL6Dba;T@EBLieFFTJPY0
 R2
-R3
-w1428260535
+R0
+w1428298599
 8./hdl/onebitfulladder.v
 F./hdl/onebitfulladder.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 V_hCQi;WD>^D?ocSf3`?d2
-!s85 0
 vonebitfullsubtractor
 R1
-I::jg5N5Yc@<ITJ`omC_dT0
+!i10b 1
+!s100 R_fgfLd2>V=J?V?LkkbOA2
+I6IcJeY`EOANd_R?dEW8Cg2
 R2
-R3
+R0
 w1428265507
 8./hdl/onebitfullsubtractor.v
 F./hdl/onebitfullsubtractor.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 fTU8f?5o17h`ALaS0PH^k1
-!s85 0
 vonebitparity
 R1
-IbBWC=VR^hAleAMZao8Va60
+!i10b 1
+!s100 mPP5J8W4]MnHM;h>SC]M42
+II?Z?mVW<2_lDEIWVnS=dR2
 R2
-R3
+R0
 w1428282313
 8./hdl/onebitparity.v
 F./hdl/onebitparity.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 SDj5LZeY[g4@:5AZ@A0170
-!s85 0
 vsimple_alu
 R1
-IIed?PZm6:SG2>1Z[@4IY^2
+!i10b 1
+!s100 ocTDbX_]aO8K>[FL[4ee70
+Iz`a=`J@06[5o9L93DOR:H0
 R2
-R3
-w1428296746
+R0
+w1428302496
 8./hdl/simple_alu.v
 F./hdl/simple_alu.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 Tn^^l?I8N=S[DEb6H>mCk0
-!s85 0
 vsubchecker
 R1
-I`<0in9oPW?HK?AgJM9Y9D2
+!i10b 1
+!s100 Nc;d_aQ8L06K3^_nl0f770
+IS44PFbBJhAfDGJAgAn:9=1
 R2
-R3
+R0
 w1428293829
 8./hdl/subchecker.v
 F./hdl/subchecker.v
 L0 1
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 db>jOi<6e^^nkGZXLdYeD0
-!s85 0
 vtop
 R1
-I2]ET5b3XC]>J@Dh1Kea8_0
+!i10b 1
+!s100 >U:PA;AWIDT<`[o_5PK8F2
+I2J8H833aD_zj6085X7SLe1
 R2
-R3
-w1428294887
+R0
+w1428300210
 8./hdl/top_tb.v
 F./hdl/top_tb.v
 L0 5
-R4
+R3
 r1
+!s85 0
 31
+R4
 R5
 R6
+!i113 0
 R7
-R8
-!i10b 1
-!s100 z6:o::aPLEB@cGE_jMb2j1
-!s85 0
