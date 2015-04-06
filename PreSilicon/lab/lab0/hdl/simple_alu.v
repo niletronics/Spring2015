@@ -1,12 +1,15 @@
 module simple_alu(clk,reset_n,opcode_valid,opcode,data, done, result, overflow);
 parameter ALU_SIZE = 8;
-input clk, reset_n,opcode_valid,opcode;
+input clk,reset_n,opcode_valid,opcode;
 input [ALU_SIZE-1:0] data;
 output [ALU_SIZE-1:0]result;
 output done,overflow;
+reg [ALU_SIZE-1:0]result;
+reg done,overflow;
 
-reg [ALU_SIZE-1:0] data_A,data_B,result_add,result_comp,result_parity,result_sub;
-reg add_overflow, sub_overflow;
+reg [ALU_SIZE-1:0] data_A,data_B;
+wire [ALU_SIZE-1:0] result_add,result_comp,result_parity,result_sub;
+//reg add_overflow, sub_overflow;
 reg [3:0] state,nextstate;
 reg [1:0] demux_opcode;
 
@@ -33,7 +36,7 @@ parameter TRUE = 1'b1,
 
 
 
-NbitFullAdder		#(.width(ALU_SIZE))	add_i1(.a(data_A),b(data_B),.cin(1'b0),.sum(result_add),.cout(add_overflow));
+NbitFullAdder		#(.width(ALU_SIZE))	add_i1(.a(data_A),.b(data_B),.cin(1'b0),.sum(result_add),.cout(add_overflow));
 Nbitcomparator 		#(.width(ALU_SIZE))	comp_i1(.a(data_A),.b(data_B),.comp(result_comp));
 Nbitparity 			#(.width(ALU_SIZE))	parity_i1(.a(data_A),.b(data_B),.parity(result_parity));
 NbitFullSubtractor	#(.width(ALU_SIZE))	sub_i1(.a(data_A),.b(data_B),.bin(1'b0),.diff(result_sub),.bout(sub_overflow));
@@ -49,7 +52,7 @@ always@(posedge clk)  begin
 end
 
 // Next State Generation
-always@(state) begin
+always@(state or reset_n or opcode_valid or opcode) begin
 
 case(state)	
 RESET 	:begin
@@ -80,19 +83,20 @@ DATA_A	: begin
 			
 
 DATA_B : begin
+		#0.1;
 			if(opcode_valid == TRUE && demux_opcode == opr_ADD) begin
 				nextstate = ADD;
 			end
 			else if (opcode_valid == TRUE && demux_opcode == opr_SUB) begin
 				nextstate = SUB;
 			end
-			else if (opcode_valid == TRUE && demux_opcode = opr_PAR) begin
+			else if (opcode_valid == TRUE && demux_opcode == opr_PAR) begin
 				nextstate = PAR;
 			end
-			else if(opcode_valid == TRUE && demux_opcode = opr_COMP) begin
-				nextstate = COMP
+			else if(opcode_valid == TRUE && demux_opcode == opr_COMP) begin
+				nextstate = COMP;
 			end
-			else if(opcode_valid = FALSE) begin
+			else if(opcode_valid == FALSE) begin
 				nextstate = IDLE;
 			end
 			else $display("demux_opcode Error");
@@ -124,10 +128,11 @@ end
 
 //Output definition for each state
 
-always@(state)
-case(state) begin
+always@(state) begin
+
+case(state) 
 RESET   : begin
-		result = ALU_SIZE{1'b0};
+		result = 'b0;
 		done = FALSE;
 		overflow = FALSE;
 		end
@@ -137,10 +142,12 @@ IDLE	: begin
 		
 DATA_A  : begin
 		data_A = data;
+		demux_opcode[0]=opcode;
 		end
 		
 DATA_B  : begin
 		data_B = data;
+		demux_opcode[1]=opcode;
 		end
 		
 ADD	    : begin
@@ -155,7 +162,7 @@ SUB 	: begin
 		
 PAR 	: begin
 		result = result_parity;
-		overflow = FLASE;
+		overflow = FALSE;
 		end
 		
 COMP	: begin
@@ -166,5 +173,7 @@ COMP	: begin
 DONE	: begin
 		done = TRUE;
 		end
+endcase
+end
 
 endmodule
