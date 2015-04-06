@@ -1,0 +1,10 @@
+module NbitFullAdder(a,b,cin,sum,cout);
+module Nbitcomparator (a,b,comp);
+module adderchecker(A,B,Cin,S,Cout);
+module subchecker(A,B,Bin,diff,Bout);
+module onebitparity(a,b,parity);
+module onebitfullsubtractor(a,b,bin,diff,bout);
+module onebitfulladder(a,b,cin,sum,cout);
+module onebitcomparator(a,b,comp);
+module Nbitparity (a,b,parity);
+module NbitFullSubtractor(a,b,bin,diff,bout);
