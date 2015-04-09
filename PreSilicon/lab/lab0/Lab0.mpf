@@ -1,4 +1,4 @@
-; Copyright 1991-2013 Mentor Graphics Corporation
+; Copyright 1991-2014 Mentor Graphics Corporation
 ;
 ; All Rights Reserved.
 ;
@@ -7,7 +7,9 @@
 ;   
 
 [Library]
-others = $MODEL_TECH/../modelsim.ini
+std = $MODEL_TECH/../std
+ieee = $MODEL_TECH/../ieee
+vital2000 = $MODEL_TECH/../vital2000
 ;
 ; VITAL concerns:
 ;
@@ -40,9 +42,23 @@ others = $MODEL_TECH/../modelsim.ini
 ;   $MODEL_TECH/../ieee
 ;   $MODEL_TECH/../vital2000
 ;
+verilog = $MODEL_TECH/../verilog
+std_developerskit = $MODEL_TECH/../std_developerskit
+synopsys = $MODEL_TECH/../synopsys
+modelsim_lib = $MODEL_TECH/../modelsim_lib
+sv_std = $MODEL_TECH/../sv_std
+mtiAvm = $MODEL_TECH/../avm
+mtiOvm = $MODEL_TECH/../ovm-2.1.2
+mtiUvm = $MODEL_TECH/../uvm-1.1d
+mtiUPF = $MODEL_TECH/../upf_lib
+mtiPA  = $MODEL_TECH/../pa_lib
+floatfixlib = $MODEL_TECH/../floatfixlib
+mc2_lib = $MODEL_TECH/../mc2_lib
+osvvm = $MODEL_TECH/../osvvm
 ;vhdl_psl_checkers = $MODEL_TECH/../vhdl_psl_checkers       // Source files only for this release
 ;verilog_psl_checkers = $MODEL_TECH/../verilog_psl_checkers // Source files only for this release
 ;mvc_lib = $MODEL_TECH/../mvc_lib
+infact = $MODEL_TECH/../infact
 
 
 work = work
@@ -94,6 +110,11 @@ VHDL93 = 2002
 
 ; Turn off optimization for IEEE std_logic_1164 package. Default is on.
 ; Optimize_1164 = 0
+
+; Enable compiler statistics. Specify one or more arguments: 
+;                   [all,none,time,cmd,msg,perf,verbose,list]
+; Add '-' to disable specific statistics. Default is [time,cmd,msg].
+; Stats = time,cmd,msg
 
 ; Turn on resolving of ambiguous function overloading in favor of the
 ; "explicit" function declaration (not the one automatically created by
@@ -236,6 +257,16 @@ Explicit = 1
 ; coverage is active.
 ; CoverUDP = 1
 
+; Enable or disable Rapid Expression Coverage mode for conditions and expressions.
+; Disabling this would convert non-masking conditions in FEC tables to matching
+; input patterns. 
+; CoverREC = 1
+
+; Enable or disable bit-blasting multi-bit operands of reduction prefix expressions
+; for expression/condition coverage.
+; NOTE: Enabling this may have a negative impact on simulation performance.
+; CoverExpandReductionPrefix = 0
+
 ; Enable or disable short circuit evaluation of conditions and expressions when
 ; condition or expression coverage is active. Short circuit evaluation is enabled
 ; by default.
@@ -364,6 +395,11 @@ Explicit = 1
 ; Enable parsing of embedded PSL assertions. Default is enabled.
 ; EmbeddedPsl = 0
 
+; Enable compiler statistics. Specify one or more arguments: 
+;                   [all,none,time,cmd,msg,perf,verbose,list]
+; Add '-' to disable specific statistics. Default is [time,cmd,msg].
+; Stats = time,cmd,msg
+
 ; Set the threshold for automatically identifying sparse Verilog memories.
 ; A memory with depth equal to or more than the sparse memory threshold gets
 ; marked as sparse automatically, unless specified otherwise in source code
@@ -422,6 +458,16 @@ Explicit = 1
 ; UDP Coverage data is disabled by default when expression and/or condition
 ; coverage is active.
 ; CoverUDP = 1
+
+; Enable or disable Rapid Expression Coverage mode for conditions and expressions.
+; Disabling this would convert non-masking conditions in FEC tables to matching
+; input patterns. 
+; CoverREC = 1
+
+; Enable or disable bit-blasting multi-bit operands of reduction prefix expressions
+; for expression/condition coverage.
+; NOTE: Enabling this may have a negative impact on simulation performance.
+; CoverExpandReductionPrefix = 0
 
 ; Enable or disable short circuit evaluation of conditions and expressions when
 ; condition or expression coverage is active. Short circuit evaluation is enabled
@@ -517,7 +563,7 @@ Explicit = 1
 ; packages.  The behavior is identical to using the "-L" switch.
 ; 
 ; LibrarySearchPath = <path/lib> [<path/lib> ...]
-LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
+LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF infact
 
 ; The behavior is identical to the "-mixedansiports" switch.  Default is off.
 ; MixedAnsiPorts = 1
@@ -547,6 +593,7 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 ; in extensions can be specified with a back-slash: "\ ".  Back-slashes
 ; can be specified with two consecutive back-slashes: "\\";
 ; SVFileExtensions = sv svp svh
+; SvFileSuffixes = sv svp svh
 
 ; This setting is the same as the vlog -sv command line switch.
 ; Enables SystemVerilog features and keywords when true (1).
@@ -578,8 +625,9 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 ; WrealType = 1
 
 ; Controls SystemVerilog Language Extensions.  These options enable
-; some non-LRM compliant behavior.  Valid extensions are "feci",
-; "pae", "uslt", "spsl", "sccts", "iddp" and "atpi".
+; some non-LRM compliant behavior.  Valid extensions are:
+; "acum", "adtff", "atpi", "catx", "daoa", "feci", "fin0", "idcl",
+; "iddp", "pae", "sccts", "spsl", "stop0", "udm0", and "uslt".
 ; SVExtensions = uslt,spsl,sccts
 
 ; Generate symbols debugging database in only some special cases to save on
@@ -587,6 +635,12 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 ; generated on-demand in vsim. 
 ; Default is to to generate debugging database for all design-units.
 ; SmartDbgSym = 1
+
+; Controls how $unit library entries are named.  Valid options are:
+; "file" (generate name based on the first file on the command line)
+; "du" (generate name based on first design unit following an item
+; found in $unit scope)
+; CUAutoName = file
 
 [sccom]
 ; Enable use of SCV include files and library.  Default is off.
@@ -607,6 +661,11 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 
 ; Enable use of SC_MS include files and library.  Default is off.
 ; UseScMs = 1
+
+; Enable compiler statistics. Specify one or more arguments: 
+;                   [all,none,time,cmd,msg,perf,verbose,list]
+; Add '-' to disable specific statistics. Default is [time,cmd,msg].
+; Stats = time,cmd,msg
 
 [vopt]
 ; Turn on code coverage in vopt.  Default is off. 
@@ -645,6 +704,11 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 ; Default is no deglitching.
 ; CoverDeglitchOn = 1
 
+; Enable compiler statistics. Specify one or more arguments: 
+;                   [all,none,time,cmd,msg,perf,verbose,list]
+; Add '-' to disable specific statistics. Default is [time,cmd,msg].
+; Stats = time,cmd,msg
+
 ; Control the code coverage deglitching period. A period of 0, eliminates delta
 ; cycle glitches. The value of CoverDeglitchPeriod needs to be either be 0 or a
 ; time string that includes time units. Examples: 0 or 10.0ps or "10.0 ps".
@@ -673,7 +737,7 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 
 ; Controls SystemVerilog Language Extensions.  These options enable
 ; some non-LRM compliant behavior.  Valid extensions are "feci",
-; "pae", "uslt", "spsl" and "sccts".
+; "pae", "uslt", "spsl", "fin0" and "sccts".
 ; SVExtensions = uslt,spsl,sccts
 
 [vsim]
@@ -702,10 +766,14 @@ Resolution = ns
 UserTimeUnit = default
 
 ; Default run length
-RunLength = 100
+RunLength = 100 ns
 
 ; Maximum iterations that can be run without advancing simulation time
-IterationLimit = 5000
+IterationLimit = 20000
+
+; Set XPROP assertion fail limit. Default is 5.
+; Any positive integer, -1 for infinity.
+; XpropAssertionLimit = 5
 
 ; Control PSL and Verilog Assume directives during simulation
 ; Set SimulateAssumeDirectives = 0 to disable assume being simulated as asserts
@@ -727,32 +795,40 @@ IterationLimit = 5000
 ; Set SimulateImmedAsserts = 1 to enable simulation of immediate asserts
 ; SimulateImmedAsserts = 1 
 
+; License feature mappings for Verilog and VHDL
+; qhsimvh       Single language VHDL license
+; qhsimvl       Single language Verilog license
+; msimhdlsim    Language neutral license for either Verilog or VHDL
+; msimhdlmix    Second language only, language neutral license for either 
+;               Verilog or VHDL
+;
 ; Directives to license manager can be set either as single value or as
 ; space separated multi-values:
-; vhdl          Immediately reserve a VHDL license
-; vlog          Immediately reserve a Verilog license
-; plus          Immediately reserve a VHDL and Verilog license
+; vhdl          Immediately checkout and hold a VHDL license (i.e., one of
+;               qhsimvh, msimhdlsim, or msimhdlmix)
+; vlog          Immediately checkout and hold a Verilog license (i.e., one of
+;               qhsimvl, msimhdlsim, or msimhdlmix)
+; plus          Immediately checkout and hold a VHDL license and a Verilog license
 ; noqueue       Do not wait in the license queue when a license is not available
 ; viewsim       Try for viewer license but accept simulator license(s) instead
 ;               of queuing for viewer license (PE ONLY)
-; noviewer	Disable checkout of msimviewer and vsim-viewer license 
-;		features (PE ONLY)
-; noslvhdl	Disable checkout of qhsimvh and vsim license features
-; noslvlog	Disable checkout of qhsimvl and vsimvlog license features
-; nomix		Disable checkout of msimhdlmix and hdlmix license features
-; nolnl		Disable checkout of msimhdlsim and hdlsim license features
-; mixedonly	Disable checkout of qhsimvh,qhsimvl,vsim,vsimvlog license 
-;		features
-; lnlonly	Disable checkout of qhsimvh,qhsimvl,vsim,vsimvlog,msimhdlmix,
-;		hdlmix license features
-; Single value:
+; noviewer      Disable checkout of msimviewer license feature (PE ONLY)
+; noslvhdl      Disable checkout of qhsimvh license feature
+; noslvlog      Disable checkout of qhsimvl license feature
+; nomix         Disable checkout of msimhdlmix license feature
+; nolnl         Disable checkout of msimhdlsim license feature
+; mixedonly     Disable checkout of qhsimvh and qhsimvl license features
+; lnlonly       Disable checkout of qhsimvh,qhsimvl, and msimhdlmix license features
+;
+; Examples (remove ";" comment character to activate licensing directives):
+; Single directive:
 ; License = plus
-; Multi-value:
+; Multi-directive (Note: space delimited directives):
 ; License = noqueue plus
 
-; Severity level of a VHDL assertion message or of a SystemVerilog immediate assertion
+; Severity level of a VHDL assertion message or of a SystemVerilog severity system task
 ; which will cause a running simulation to stop.
-; VHDL assertions and SystemVerilog immediate assertions that occur with the
+; VHDL assertions and SystemVerilog severity system task that occur with the
 ; given severity or higher will cause a running simulation to stop.
 ; This value is ignored during elaboration.
 ; 0 = Note  1 = Warning  2 = Error  3 = Failure  4 = Fatal
@@ -834,7 +910,16 @@ DefaultRadixFlags = showbase
 ; To explicitly disable auto save:
 ; ShutdownFile = --disable-auto-save
 
-; File for saving command transcript
+; Run simulator in batch mode as if -batch were specified on the command line if none of -c, -gui, or -i specified.
+; Simulator runs in interactive mode as if -i were specified if this option is 0. Default is 0.
+; BatchMode = 1
+
+; File for saving command transcript when -batch option used
+; This option is ignored when -c, -gui, or -i options are used or if BatchMode above is zero
+; default is unset so command transcript only goes to stdout for better performance
+; BatchTranscriptFile = transcript
+
+; File for saving command transcript, this option is ignored when -batch option is used
 TranscriptFile = transcript
 
 ; File for saving command history
@@ -896,6 +981,10 @@ DatasetSeparator = :
 ; the default is to update and propagate in the same iteration.
 ; ForceSigNextIter = 1
 
+; Enable simulation statistics. Specify one or more arguments: 
+;                   [all,none,time,cmd,msg,perf,verbose,list]
+; Add '-' to disable specific statistics. Default is [time,cmd,msg].
+; Stats = time,cmd,msg
 
 ; If zero, open files when elaborated; otherwise, open files on
 ; first read or write.  Default is 0.
@@ -951,9 +1040,10 @@ ConcurrentFileLimit = 40
 ; lookup can function properly.  The default is %s__%d.
 ; GenerateFormat = %s__%d
 
-; Enable changes in VHDL elaboration to allow for Variable Logging
-; This trades off simulation performance for the ability to log variables
-; efficiently.  By default this is disable for maximum simulation performance
+; Allow logging of VHDL Variables.
+; This trades off simulation performance for the ability to log VHDL variables
+; and shared variables.
+; By default this is disabled for maximum simulation performance.
 ; VhdlVariableLogging = 1
 
 ; Make VHDL packages in PDUs have there own copy of a package instead
@@ -1145,6 +1235,12 @@ WildcardSizeThresholdVerbose = 0
 ; Setting LargeObjectSize to 0 will disable these messages.
 ; LargeObjectSize = 500000
 
+
+; Specify the depth of stack frames returned by $stacktrace([level]).
+; This depth will be picked up when the optional 'level' argument
+; is not specified or its value is not a positive integer. 
+; StackTraceDepth = 100
+
 ; Turn on/off undebuggable SystemC type warnings. Default is on.
 ; ShowUndebuggableScTypeWarning = 0
 
@@ -1227,7 +1323,6 @@ OnFinish = ask
 ; 3 == print at end of run and end of simulation
 ; default == 0
 ; PrintSimStats = 1
-
 
 ; Assertion File - alternate file for storing VHDL/PSL/Verilog assertion messages
 ; AssertFile = assert.log
@@ -1568,6 +1663,18 @@ OnFinish = ask
 ; Windows or AIX platforms.
 ; GlobalSharedObjectList = example1.so example2.so example3.so
 
+; Generate the stub definitions for the undefined symbols in the shared libraries being
+; loaded in the simulation. When this flow is turned on, the undefined symbols will not
+; prevent vsim from loading. Calling undefined symbols at runtime will cause fatal error.
+; The valid arguments are: on, off, verbose. 
+;     on : turn on the automatic generation of stub definitions.
+;     off: turn off the flow. The undefined symbols will trigger an immediate load failure.
+;     verbose: Turn on the flow and report the undefined symbols for each shared library.
+; NOTE: This variable can be overriden with vsim switch "-undefsyms".
+; The default is off.
+;
+; UndefSyms = on
+
 ; Initial seed for the random number generator of the root thread (SystemVerilog).
 ; NOTE: This variable can be overridden with the vsim "-sv_seed" command line switch.
 ; The default value is 0.
@@ -1608,11 +1715,32 @@ OnFinish = ask
 ; The default is 0 (no error).
 ; SolveFailSeverity = 0
 
+; Error message severity for suppressible errors that are detected in a
+; solve/before constraint.
+; NOTE: This variable can be overridden with the vsim "-solvebeforeerrorseverity"
+; command line switch.
+; 0 = No error  1 = Warning  2 = Error  3 = Failure  4 = Fatal
+; The default is 3 (failure).
+; SolveBeforeErrorSeverity = 3
+
 ; Enable/disable debug information for randomize() failures.
-; NOTE: This variable can be overridden with the vsim "-solvefaildbug" command
+; NOTE: This variable can be overridden with the vsim "-solvefaildebug" command
 ; line switch.
-; The default is 0 (disabled). Set to 1 to enable.
+; The default is 0 (disabled). Set to 1 to enable basic debug (with no
+; performance penalty). Set to 2 for enhanced debug (will result in slower
+; runtime performance).
 ; SolveFailDebug = 0
+
+; Upon encountering a randomize() failure, generate a simplified testcase that
+; will reproduce the failure. Optionally output the testcase to a file.
+; Testcases for 'no-solution' failures will only be produced if SolveFailDebug
+; is enabled (see above).
+; NOTE: This variable can be overridden with the vsim "-solvefailtestcase"
+; command line switch.
+; The default is OFF (do not generate a testcase). To enable testcase
+; generation, uncomment this variable. To redirect testcase generation to a
+; file, specify the name of the output file.
+; SolveFailTestcase = 
 
 ; Specify the maximum size of the solution graph generated by the BDD solver.
 ; This value can be used to force the BDD solver to abort the evaluation of a
@@ -1643,17 +1771,6 @@ OnFinish = ask
 ; scenario that fails due to the SolveACTMax[Tests|Ops] threshold.
 ; The default value is 0 (no retry).
 ; SolveACTRetryCount = 0
-
-; Use SolveFlags to specify options that will guide the behavior of the
-; constraint solver. These options may improve the performance of the
-; constraint solver for some testcases, and decrease the performance of the
-; constraint solver for others.
-; Valid flags are:
-;    i = disable bit interleaving for >, >=, <, <= constraints (BDD engine)
-;    n = disable bit interleaving for all constraints (BDD engine)
-;    r = reverse bit interleaving (BDD engine)
-; The default value is "" (no options).
-; SolveFlags =
 
 ; Specify random sequence compatiblity with a prior letter release. This 
 ; option is used to get the same random sequences during simulation as
@@ -1691,6 +1808,10 @@ DumpportsCollapse = 1
 ; Location of Multi-Level Verification Component (MVC) installation. 
 ; The default location is the product installation directory.
 MvcHome = $MODEL_TECH/..
+
+; Location of InFact installation. The default is $MODEL_TECH/../../infact
+;
+; InFactHome = $MODEL_TECH/../../infact
 
 ; Initialize SystemVerilog enums using the base type's default value
 ; instead of the leftmost value.
@@ -1800,31 +1921,117 @@ suppress = 8780 ;an explanation can be had by running: verror 8780
 ;    both  {transcript and wlf file}
 ; msgmode = tran
 
+; Controls number of displays of a particluar message
+; default value is 5
+; MsgLimitCount = 5
+
 [utils]
-; Default Library Type
-; Set to determine the default type for a library created with "vlib"
+; Default Library Type (while creating a library with "vlib")
 ;  0 - legacy library using subdirectories for design units
-;  1 - archive library (deprecated)
 ;  2 - flat library
 ; DefaultLibType = 2
 
-; Archive Library Compact Value
-; Sets compaction trigger for archive libraries.  The value is the percentage
-; of free space in the archive.
-; ArchiveLibCompact = 0.5
-
-; Flat Library Page Size
-; Set the size in bytes for flat library file pages.  Very large libraries
-; may benefit from a larger value, at the expense of disk space.
+; Flat Library Page Size (while creating a library with "vlib")
+; Set the size in bytes for flat library file pages.  Libraries containing
+; very large files may benefit from a larger value.
 ; FlatLibPageSize = 8192
 
-; Flat Library Page Cleanup Percentage
+; Flat Library Page Cleanup Percentage (while creating a library with "vlib")
 ; Set the percentage of total pages deleted before library cleanup can occur.
 ; This setting is applied together with FlatLibPageDeleteThreshold.
 ; FlatLibPageDeletePercentage = 50
 
-; Flat Library Page Cleanup Threshold
+; Flat Library Page Cleanup Threshold (while creating a library with "vlib")
 ; Set the number of pages deleted before library cleanup can occur.
 ; This setting is applied together with FlatLibPageDeletePercentage.
 ; FlatLibPageDeleteThreshold = 1000
 
+[Project]
+; Warning -- Do not edit the project properties directly.
+;            Property names are dynamic in nature and property
+;            values have special syntax.  Changing property data directly
+;            can result in a corrupt MPF file.  All project properties
+;            can be modified through project window dialogs.
+Project_Version = 6
+Project_DefaultLib = work
+Project_SortMethod = unused
+Project_Files_Count = 15
+Project_File_0 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/adderchecker.v
+Project_File_P_0 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428261540 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 0 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_1 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/onebitfullsubtractor.v
+Project_File_P_1 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428265507 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 10 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_2 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/NbitFullSubtractor_tb.v
+Project_File_P_2 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428281350 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 6 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_3 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/Nbitparity.v
+Project_File_P_3 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428305260 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 7 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_4 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/onebitparity.v
+Project_File_P_4 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428282313 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 11 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_5 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/simple_alu.v
+Project_File_P_5 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 folder {Top Level} last_compile 1428564814 cover_fsm 0 cover_branch 0 vlog_noload 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 vlog_hazard 0 vlog_showsource 0 cover_optlevel 3 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 12 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_6 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/Nbitcomparator.v
+Project_File_P_6 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428305281 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 2 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_7 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/NbitFullAdder_tb.v
+Project_File_P_7 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428262600 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 4 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_8 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/subchecker.v
+Project_File_P_8 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428293829 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 13 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_9 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/top_tb.v
+Project_File_P_9 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428300210 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 14 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_10 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/NbitFullAdder.v
+Project_File_P_10 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428262164 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 3 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_11 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/alu_test.v
+Project_File_P_11 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1427700006 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 1 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_12 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/NbitFullSubtractor.v
+Project_File_P_12 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428281778 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 5 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_13 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/onebitcomparator.v
+Project_File_P_13 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428282852 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 8 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_14 = U:/dattani/Documents/Spring2015/PreSilicon/lab/lab0/hdl/onebitfulladder.v
+Project_File_P_14 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 last_compile 1428298599 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 9 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_Sim_Count = 0
+Project_Folder_Count = 0
+Echo_Compile_Output = 0
+Save_Compile_Report = 1
+Project_Opt_Count = 0
+ForceSoftPaths = 0
+ProjectStatusDelay = 5000
+VERILOG_DoubleClick = Edit
+VERILOG_CustomDoubleClick = 
+SYSTEMVERILOG_DoubleClick = Edit
+SYSTEMVERILOG_CustomDoubleClick = 
+VHDL_DoubleClick = Edit
+VHDL_CustomDoubleClick = 
+PSL_DoubleClick = Edit
+PSL_CustomDoubleClick = 
+TEXT_DoubleClick = Edit
+TEXT_CustomDoubleClick = 
+SYSTEMC_DoubleClick = Edit
+SYSTEMC_CustomDoubleClick = 
+TCL_DoubleClick = Edit
+TCL_CustomDoubleClick = 
+MACRO_DoubleClick = Edit
+MACRO_CustomDoubleClick = 
+VCD_DoubleClick = Edit
+VCD_CustomDoubleClick = 
+SDF_DoubleClick = Edit
+SDF_CustomDoubleClick = 
+XML_DoubleClick = Edit
+XML_CustomDoubleClick = 
+LOGFILE_DoubleClick = Edit
+LOGFILE_CustomDoubleClick = 
+UCDB_DoubleClick = Edit
+UCDB_CustomDoubleClick = 
+TDB_DoubleClick = Edit
+TDB_CustomDoubleClick = 
+UPF_DoubleClick = Edit
+UPF_CustomDoubleClick = 
+PCF_DoubleClick = Edit
+PCF_CustomDoubleClick = 
+PROJECT_DoubleClick = Edit
+PROJECT_CustomDoubleClick = 
+VRM_DoubleClick = Edit
+VRM_CustomDoubleClick = 
+DEBUGDATABASE_DoubleClick = Edit
+DEBUGDATABASE_CustomDoubleClick = 
+DEBUGARCHIVE_DoubleClick = Edit
+DEBUGARCHIVE_CustomDoubleClick = 
+Project_Major_Version = 10
+Project_Minor_Version = 3

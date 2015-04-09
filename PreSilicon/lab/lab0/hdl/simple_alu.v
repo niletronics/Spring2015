@@ -36,11 +36,11 @@ parameter TRUE = 1'b1,
 
 
 
-/*NbitFullAdder		#(.width(ALU_SIZE))	add_i1(.a(data_A),.b(data_B),.cin(1'b0),.sum(result_add),.cout(add_overflow));
+NbitFullAdder		#(.width(ALU_SIZE))	add_i1(.a(data_A),.b(data_B),.cin(1'b0),.sum(result_add),.cout(add_overflow));
 Nbitcomparator 		#(.width(ALU_SIZE))	comp_i1(.a(data_A),.b(data_B),.comp(result_comp));
 Nbitparity 			#(.width(ALU_SIZE))	parity_i1(.a(data_A),.b(data_B),.parity(result_parity));
 NbitFullSubtractor	#(.width(ALU_SIZE))	sub_i1(.a(data_A),.b(data_B),.bin(1'b0),.diff(result_sub),.bout(sub_overflow));
-*/
+
 // Next State Assignment 
 always@(posedge clk)  begin
 	if (reset_n == 1'b0) begin
@@ -52,7 +52,7 @@ always@(posedge clk)  begin
 end
 
 // Next State Generation
-always@(state or reset_n or opcode_valid ) begin
+always@(state or reset_n or opcode_valid) begin
 
 case(state)	
 RESET 	:begin
@@ -99,27 +99,15 @@ DATA_B : begin
 			else if(opcode_valid == FALSE) begin
 				nextstate = IDLE;
 			end
-			else $display("demux_opcode Error");
+
 		end
 
-ADD	: begin
+ADD | SUB | PAR | COMP: begin
 			nextstate = DONE;
 		end
 		
-SUB	: begin
-			nextstate = DONE;
-		end
-		
-PAR	: begin
-			nextstate = DONE;
-		end
-		
-COMP: begin
-			nextstate = DONE;
-		end
-
-DONE : begin
-			
+DONE : begin		
+			done = TRUE;	
 			nextstate = IDLE;
 		end
 endcase
@@ -129,53 +117,64 @@ end
 
 //Output definition for each state
 
-always@(state or posedge clk) begin
+always@(state) begin
 
 case(state) 
 RESET   : begin
-		result = 'b0;
-		done = 0;
-		//done = FALSE;
+		result = {ALU_SIZE{1'b0}};
+		done = FALSE;
 		overflow = FALSE;
 		end
 
 IDLE	: begin
-			done = 0;
+		result = result;
+		done = done;
+		overflow = overflow;
 		end
 		
 DATA_A  : begin
 		data_A = data;
 		demux_opcode[0]=opcode;
+		result = result;
+		done = done;
+		overflow = overflow;
 		end
 		
 DATA_B  : begin
 		data_B = data;
 		demux_opcode[1]=opcode;
+		result = result;
+		done = done;
+		overflow = overflow;
 		end
 		
 ADD	    : begin
 		result = result_add;
+		done = done;
 		overflow = add_overflow;
-		$display("result from ADD: sum  = %b carryout = %b and result = %b", result_add,add_overflow,result);
 		end
 		
 SUB 	: begin
 		result = result_sub;
 		overflow = sub_overflow;
-		$display("result from SUB: sum  = %b carryout = %b and result = %b", result_sub,sub_overflow,result);
+		done=done;
 		end
 		
 PAR 	: begin
 		result = result_parity;
 		overflow = FALSE;
+		done = done;
 		end
 		
 COMP	: begin
 		result = result_comp;
 		overflow = FALSE;
+		done=done;
 		end
 		
 DONE	: begin
+		result = result;
+		overflow = overflow;
 		done = TRUE;
 		end
 endcase

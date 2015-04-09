@@ -6,7 +6,7 @@ output [width-1:0]parity;
 genvar i;
 
 generate 
-for (i=0;i<width-1;i=i+1) 
+for (i=0;i<width;i=i+1) 
 onebitparity A(.a(a[i]),.b(b[i]),.parity(parity[i]));
 endgenerate
 
