@@ -4,7 +4,7 @@ compile :
 	vlog ./hdl/*.v
 	
 simulate :
-	vsim -c -novopt top -do $(dofile)
+	vsim -c -novopt top
 
 clean :
 	rm -rf ./work transcript modelsim.in

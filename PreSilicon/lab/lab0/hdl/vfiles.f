@@ -1,0 +1,12 @@
+onebitparity.v
+onebitfullsubtractor.v
+onebitfulladder.v
+onebitcomparator.v
+Nbitparity.v
+Nbitparity.v
+NbitFullSubtractor.v
+NbitFullAdder.v
+Nbitcomparator.v
+simple_alu.v
+alu_test.v
+top_tb.v

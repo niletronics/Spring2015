@@ -52,7 +52,7 @@ always@(posedge clk)  begin
 end
 
 // Next State Generation
-always@(state or reset_n or opcode_valid) begin
+always@(*) begin
 
 case(state)	
 RESET 	:begin
@@ -76,14 +76,15 @@ DATA_A	: begin
 			if(opcode_valid == TRUE) begin
 				nextstate = DATA_B;
 			end
-			else begin
+			else if(opcode_valid == FALSE)begin
 				nextstate = IDLE;
 			end
+			else 
+				nextstate = DATA_B;
 		end
 			
 
-DATA_B : begin
-		
+DATA_B : begin		
 			if(opcode_valid == TRUE && demux_opcode == opr_ADD) begin
 				nextstate = ADD;
 			end
@@ -99,10 +100,11 @@ DATA_B : begin
 			else if(opcode_valid == FALSE) begin
 				nextstate = IDLE;
 			end
-
+			else
+			nextstate = DATA_B;
 		end
 
-ADD | SUB | PAR | COMP: begin
+ADD,SUB,PAR,COMP: begin
 			nextstate = DONE;
 		end
 		
@@ -110,6 +112,10 @@ DONE : begin
 			done = TRUE;	
 			nextstate = IDLE;
 		end
+default : begin 
+			$display("Default case encountered : Location 2");
+			nextstate = RESET ;
+			end
 endcase
 
 end
@@ -128,7 +134,7 @@ RESET   : begin
 
 IDLE	: begin
 		result = result;
-		done = done;
+		done = FALSE;
 		overflow = overflow;
 		end
 		
@@ -177,6 +183,7 @@ DONE	: begin
 		overflow = overflow;
 		done = TRUE;
 		end
+default : $display("Default case encountered : Location 1");
 endcase
 end
 
