@@ -1,9 +1,9 @@
 module NbitAdder(A,B,Cin,S,Cout);
-parameter width = 8;
-localparam base = width/4;
-input [width-1:0] A,B;
+parameter WIDTH = 8;
+localparam base = WIDTH/4;
+input [WIDTH-1:0] A,B;
 input Cin;
-output [width-1:0]S;
+output [WIDTH-1:0]S;
 output Cout;
 wire [base:0]C;
 genvar i;
