@@ -11,7 +11,7 @@ parameter RANDOMIZED = 2'b01;
 parameter EXHAUSTIVE = 2'b10;
 
 
-reg [1:0]TYPEOFTEST;
+parameter [1:0]TYPEOFTEST;
 
 reg [WIDTH-1:0]A,B;
 reg clk,Cin;
@@ -31,7 +31,7 @@ integer file,r,clock_count,randtest,dirtest,exhtest,testcount,passtest,failtest;
 always #CLK_WIDTH clk = ~clk;
 
 initial begin
-clock_count = 0; i=0; clk = 1'b0;A=0;B=0;Cin=0;pad=0;done=0; TYPEOFTEST = EXHAUSTIVE;
+clock_count = 0; i=0; clk = 1'b0;A=0;B=0;Cin=0;pad=0;done=0; //TYPEOFTEST = EXHAUSTIVE;
 randtest=0;dirtest=0;exhtest=0;testcount=0;passtest=0;failtest=0;
 file = $fopen("data.data","r");
 end
@@ -50,8 +50,7 @@ always@(negedge clk) begin
 			else begin
 				$display("Reached End of File");
 				done = done+1;
-				TYPEOFTEST = RANDOMIZED;
-			end
+				end
 		end
 	
 	RANDOMIZED : begin			
@@ -61,7 +60,6 @@ always@(negedge clk) begin
 			randtest = randtest + 1;
 			if(clock_count>=RUNTIME+4) begin
 			done = done+1;
-			TYPEOFTEST = DIRECTIONAL;
 			end
 		end
 	
