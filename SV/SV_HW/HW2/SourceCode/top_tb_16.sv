@@ -1,30 +1,33 @@
+`include fileoperations.sv
+import fileoperation::*;
+
 module tb_16();
-parameter CLK_WIDTH = 50;
-parameter WIDTH = 16;
-parameter COMB_DELAY = 10;
-parameter RUNTIME = 10000; 
-localparam TRUE = 1'b1;
-localparam FALSE = 1'b0;
+parameter CLK_WIDTH		= 50;
+parameter WIDTH 		= 16;
+parameter COMB_DELAY 	= 10;
+parameter RUNTIME 		= 10000; 
+localparam TRUE 		= 1'b1;
+localparam FALSE 		= 1'b0;
 
-parameter DIRECTIONAL = 2'b00;
-parameter RANDOMIZED = 2'b01;
-parameter EXHAUSTIVE = 2'b10;
+parameter DIRECTIONAL 	= 2'b00;
+parameter RANDOMIZED 	= 2'b01;
+parameter EXHAUSTIVE 	= 2'b10;
 
 
-reg [1:0]TYPEOFTEST;
+reg 	[1:0]TYPEOFTEST;
 
-reg [WIDTH-1:0]A,B;
-reg clk,Cin;
-reg [WIDTH-1:0]S;
+reg 	[WIDTH-1:0]A,B;
+reg 	clk,Cin;
+reg 	[WIDTH-1:0]S;
 
-reg [15:0]exp_sum;
-reg exp_carry;
+reg 	[15:0]exp_sum;
+reg 	exp_carry;
 
-reg [15:0]sum_queue[650000:0];
-reg carry_queue[650000:0];
-reg [256:0]i;
-reg pad;
-reg [1:0] done;
+reg 	[15:0]sum_queue[650000:0];
+reg 	carry_queue[650000:0];
+reg 	[256:0]i;
+reg 	pad;
+reg 	[1:0] done;
 
 integer file,r,clock_count,randtest,dirtest,exhtest,testcount,passtest,failtest;
 
@@ -85,8 +88,7 @@ endcase
 		sum_queue[i+3] = exp_sum;
 		carry_queue[i+3] = exp_carry;
 		
-//		$display("sum_queue= %h, S = %h , carry_queue = %h ,Cout = %h",sum_queue[i],S,carry_queue[i],Cout);
-		
+
 		if ((sum_queue[i]==S) && (carry_queue[i] == Cout) && (clock_count>=4)) begin
 			passtest = passtest + 1;
 			if($test$plusargs("DEBUG")) begin

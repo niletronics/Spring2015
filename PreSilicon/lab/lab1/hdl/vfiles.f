@@ -1,0 +1,15 @@
+./hdl/onebitparity.v
+./hdl/onebitfullsubtractor.v
+./hdl/onebitfulladder.v
+./hdl/onebitcomparator.v
+./hdl/Nbitparity.v
+./hdl/NbitFullSubtractor.v
+./hdl/NbitFullAdder.v
+./hdl/Nbitcomparator.v
+./hdl/simple_alu.v
+./hdl/clkgen_driver.v
+./hdl/alu_test_old.v
+./hdl/alu_test_new.v
+./hdl/alu_chkr.v
+./hdl/tb_new.v
+./hdl/tb_old.v
