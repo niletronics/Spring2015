@@ -266,7 +266,7 @@ $display("||====================================================================
 twenty = 0;
 ten = 0;
 repeat (8) begin
-	N=$random_range(10);
+	N={$random}%{11};
 	repeat(N) @(negedge clk);
 		ten = $random;
 		twenty= !ten;

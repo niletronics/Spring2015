@@ -1,0 +1,307 @@
+# vsim -do "do.do" -c fsm_tb 
+# Start time: 19:29:08 on May 03,2015
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim
+# //  Version 10.3 linux Jan  6 2014
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# Loading sv_std.std
+# Loading work.fsm_enums(fast)
+# Loading work.fsm_sv_unit(fast)
+# Loading work.fsm_tb_sv_unit(fast)
+# Loading work.fsm_tb(fast)
+# do do.do 
+# ** Warning: (vsim-8315) ./SourceCode/fsm.sv(109): No condition is true in the unique/priority if/case statement.
+# ||                             #######Start Of Simulation FSM###########                                ||
+# ||--------------Cost of the ticket = fortydollars			CLOCK_PERIOD = 10 ----------------||
+# ||======================================================================================================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ** Warning: (vsim-8315) ./SourceCode/fsm.sv(81): No condition is true in the unique/priority if/case statement.
+# ||    0  |  0  |      0 |    zerodollar |    RESET |      RESET   |   0  |    0  |      0   |       0   ||
+# ||===============================Test Case Default Payment 10,20,10=====================================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      0 |    zerodollar |    RESET |        RDY   |   0  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||===============================Test Case Default Payment 20,10,10=====================================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||===============================Test Case OnlyTens Payment 10,10..=====================================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||===============================Test Case OnlyTwenties Payment 20, 20...===============================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||===============================Test Case Pulsing Tens Payment 10,0,10,0...============================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      0 |    tendollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||===============================Test Case Overpayment Payment 10,20,20=================================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fiftydollars |  COLLECT |     RETTEN   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fiftydollars |  COLLECT |     RETTEN   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fiftydollars |   RETTEN |   DISPENSE   |   0  |    0  |      0   |       1   ||
+# ||    1  |  0  |      0 |  fiftydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RESET 				
+# ||======================================================================================================||
+# 
+# ||===============================Test Case Overpayment Payment 20,10,20=================================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fiftydollars |  COLLECT |     RETTEN   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fiftydollars |  COLLECT |     RETTEN   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fiftydollars |   RETTEN |   DISPENSE   |   0  |    0  |      0   |       1   ||
+# ||    1  |  0  |      0 |  fiftydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RESET 				
+# ||======================================================================================================||
+# 
+# ||===============================Random Mutually Exclusive Inputs, Verification required..!!============||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||===============================Random Mutually Exclusive Inputs, Verification required..!!============||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fiftydollars |  COLLECT |     RETTEN   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fiftydollars |  COLLECT |     RETTEN   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fiftydollars |   RETTEN |   DISPENSE   |   0  |    0  |      0   |       1   ||
+# ||    1  |  0  |      1 |  fiftydollars |   RETTEN |   DISPENSE   |   0  |    0  |      0   |       1   ||
+# ||    1  |  0  |      1 |  fiftydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||=================Mutually Exclusive Random Inputs with Random Delays, Verification required..!!=======||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      1 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 |    tendollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||=============================== Reset during a normal transaction ====================================||
+# || Reset | Ten | Twenty |    Total      |   State  |   NextState  | Bill | Ready | Dispense | ReturnTen ||
+# ||======================================================================================================||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      1 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN RESET 				
+# ||======================================================================================================||
+# 
+# ||    0  |  0  |      0 |    zerodollar |    RESET |      RESET   |   0  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |    zerodollar |    RESET |        RDY   |   0  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# ||    1  |  0  |      1 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | twentydollars |      RDY |    COLLECT   |   0  |    1  |      0   |       0   ||
+# ||    1  |  1  |      0 | thirtydollars |  COLLECT |    COLLECT   |   1  |    0  |      0   |       0   ||
+# ||    1  |  1  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars |  COLLECT |   DISPENSE   |   1  |    0  |      0   |       0   ||
+# ||    1  |  0  |      0 |  fortydollars | DISPENSE |        RDY   |   0  |    0  |      1   |       0   ||
+# ||======================================================================================================||
+# 		 STATES THAT WERE NOT ENTERED DURING THE TRANSACTION = RETTEN 				
+# ||======================================================================================================||
+# 
+# ||    1  |  0  |      0 |    zerodollar |      RDY |        RDY   |   0  |    1  |      0   |       0   ||
+# **Error Code Information = Time,twenty.ten                                                              ||
+# ||===================================    SUMMARY    ====================================================||
+# ||===========================    No of tickets dispensed = 21    =======================================||
+# ||===========================    No of tickets $10s returned = 3    ====================================||
+# ** Note: $finish    : ./SourceCode/fsm_tb.sv(106)
+#    Time: 1340 ns  Iteration: 1  Instance: /fsm_tb
